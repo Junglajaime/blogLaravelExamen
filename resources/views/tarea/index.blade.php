@@ -40,15 +40,23 @@
                                 entradas
                             </div>
                             
-                            <div class="ms-auto text-muted">
-                                Buscar:
-                                <div class="ms-2 d-inline-block">
-                                    <input type="text" id="search-input" class="form-control form-control-sm"
-                                           aria-label="Buscar entrada">
+                            <form action="{{ route('tarea.index') }}" method="GET" class="ms-auto">
+                                <div class="text-muted">
+                                    Filtrar por categoría:
+                                    <div class="ms-2 d-inline-block">
+                                        <select name="categoria_id" id="categoria_id" class="form-select form-select-sm">
+                                            <option value="">Todas las categorías</option>
+                                            @foreach($categorias as $categoria)
+                                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                            </form>
                         </div>
                     </div>
+                    
                     
                     
                     

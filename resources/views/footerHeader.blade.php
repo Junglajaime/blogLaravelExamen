@@ -6,6 +6,7 @@
     <title>@yield('titulo')</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
    
     <style>
         html, body {
@@ -17,7 +18,7 @@
 
 <header class="bg-dark py-3">
     <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="text-light">Entradas</h1>
+        <h1 class="text-light">Tareas</h1>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-info">Cerrar Sesión</button>
@@ -33,7 +34,7 @@
 
 <footer class="bg-dark text-light py-3">
     <div class="container">
-        <p>Tarea online 6 - Desarrollo web entorno servidor</p>
+        <p>Tarea Presencial 6 - Desarrollo web entorno servidor</p>
     </div>
 </footer>
 
