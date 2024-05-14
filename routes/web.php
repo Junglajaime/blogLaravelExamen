@@ -9,8 +9,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\EntradaController::class, 'index'])->name('home');
+Route::get('/tasks', [\App\Http\Controllers\TareaController::class, 'index'])->name('tasks');
+
 //Route::get('/entries', [\App\Http\Controllers\EntradaController::class, 'index'])->name('entries');
 
-Route::resource('/categorias', App\Http\Controllers\CategoriaController::class);
 Route::resource('/entradas', App\Http\Controllers\EntradaController::class);
 Route::resource('/entrada', App\Http\Controllers\EntradaController::class);
+Route::resource('/tarea', App\Http\Controllers\TareaController::class);
