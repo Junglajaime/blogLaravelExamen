@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tarea;
 use App\Models\Categoria;
+use Dompdf\Dompdf;
 
 class TareaController extends Controller
 {
@@ -17,17 +18,26 @@ class TareaController extends Controller
         $query->where('cat_id', $request->categoria_id);
     }
 
+    // Verificar si se ha seleccionado una fecha para filtrar
+    if ($request->has('fecha')) {
+        $fecha = $request->fecha;
+        $query->whereDate('fecha', $fecha);
+    }
+
+    // Verificar si se ha seleccionado un estado para filtrar
+    if ($request->has('estado')) {
+        $estado = $request->estado;
+        $query->where('estado', $estado);
+    }
+
     $tareas = $query->paginate(10);
 
     // Obtener todas las categorías para el combobox de filtrado
     $categorias = Categoria::all();
-    $fecha = $request->input('fecha'); // Obtener la fecha del request
-
-    // Filtrar las tareas por la fecha especificada
-    $tareas = Tarea::whereDate('created_at', $fecha)->get();
 
     return view('tarea.index', compact('tareas', 'categorias'));
 }
+
 
     public function create()
     {
@@ -149,4 +159,32 @@ class TareaController extends Controller
         $tarea->delete();
         return redirect()->route('tarea.index')->with('success', 'Tarea eliminada correctamente');
     }
+
+       
+
+    public function pdf()
+    {
+        // Obtener los datos necesarios para el PDF (en este caso, las tareas)
+        $tareas = Tarea::all();
+
+        // Crear una instancia de Dompdf
+        $dompdf = new Dompdf();
+
+        // Renderizar la vista en HTML
+        $html = view('pdf', compact('tareas'))->render();
+
+        // Cargar el HTML en Dompdf
+        $dompdf->loadHtml($html);
+
+        // Opcional: ajustar las opciones de Dompdf (por ejemplo, tamaño de papel y orientación)
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Renderizar el PDF
+        $dompdf->render();
+
+        // Descargar el PDF en lugar de mostrarlo en el navegador
+        return $dompdf->stream('listado_de_tareas.pdf');
+    }
+
+
 }

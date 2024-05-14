@@ -49,6 +49,22 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
                             </form>
+
+                            <form action="{{ route('tarea.index') }}" method="GET" class="ms-auto">
+                                <div class="text-muted">
+                                    Filtrar por estado:
+                                    <div class="ms-2 d-inline-block">
+                                        <select name="estado" id="estado" class="form-select form-select-sm">
+                                            <option value="">Todos los estados</option>
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="en progreso">En Progreso</option>
+                                            <option value="completada">Completada</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                            </form>
+                            
                             
                             
                             <form action="{{ route('tarea.index') }}" method="GET" class="ms-auto">
@@ -65,6 +81,10 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
                             </form>
+                            <form action="{{ route('tarea.pdf') }}" method="GET">
+                                <button type="submit" class="btn btn-primary">Generar PDF</button>
+                            </form>
+                            
                         </div>
                     </div>
                     
