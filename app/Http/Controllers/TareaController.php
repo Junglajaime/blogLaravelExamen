@@ -21,6 +21,10 @@ class TareaController extends Controller
 
     // Obtener todas las categorías para el combobox de filtrado
     $categorias = Categoria::all();
+    $fecha = $request->input('fecha'); // Obtener la fecha del request
+
+    // Filtrar las tareas por la fecha especificada
+    $tareas = Tarea::whereDate('created_at', $fecha)->get();
 
     return view('tarea.index', compact('tareas', 'categorias'));
 }
@@ -30,6 +34,7 @@ class TareaController extends Controller
         $tarea = new Tarea();
         $categorias = Categoria::all();
         return view('tarea.create', compact('tarea', 'categorias'));
+
     }
 
     public function store(Request $request)
@@ -59,6 +64,8 @@ class TareaController extends Controller
         default:
             $prioridad = null;
     }
+
+   
 
     $tarea = new Tarea();
 

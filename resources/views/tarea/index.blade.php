@@ -42,6 +42,17 @@
                             
                             <form action="{{ route('tarea.index') }}" method="GET" class="ms-auto">
                                 <div class="text-muted">
+                                    Filtrar por fecha:
+                                    <div class="ms-2 d-inline-block">
+                                        <input type="date" id="fecha" name="fecha" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                            </form>
+                            
+                            
+                            <form action="{{ route('tarea.index') }}" method="GET" class="ms-auto">
+                                <div class="text-muted">
                                     Filtrar por categoría:
                                     <div class="ms-2 d-inline-block">
                                         <select name="categoria_id" id="categoria_id" class="form-select form-select-sm">
